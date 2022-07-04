@@ -206,4 +206,4 @@ async def event(ctx):
 
     return await ctx.respond(embed=rolledEmbed, file=file)
 
-bot.run("OTc5MjY2NTk3NTc3NDM3MTg0.GLK7Uv.NzCax7nVubjfEiFwzO8oUh5BRLRP-6kv1crA-Y")
+bot.run(os.environ["DISCORD_TOKEN"])
