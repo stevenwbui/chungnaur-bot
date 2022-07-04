@@ -12,12 +12,12 @@ async def gacha_pricecheck(user_id, level=1):
 
     db = await aiosqlite.connect("main.db")
     cursor = await db.cursor()
-    await cursor.execute("SELECT id FROM users WHERE id = ?", [user_id])
+    await cursor.execute("SELECT wallet FROM users WHERE id = ?", [user_id])
 
     result = await cursor.fetchone()
     wallet = result[0]
 
-    if (wallet >= result):
+    if (wallet >= price):
         wallet -= price
         await cursor.execute("UPDATE users SET wallet = ? WHERE id = ?", (wallet, user_id))
 
@@ -26,9 +26,9 @@ async def gacha_pricecheck(user_id, level=1):
     else:
         answer = False
 
-    db.commit()
-    cursor.close()
-    db.close()
+    await db.commit()
+    await cursor.close()
+    await db.close()
     return answer
 
 
